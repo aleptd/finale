@@ -46,33 +46,8 @@ public class FragmentRequestsToMe extends Fragment {
         listRequestsToMe= (ListView)rootView.findViewById(R.id.listRequestsToMe);
         Reservation[] reservations = new Reservation[2];
         //collegamento a web server
-        URL url;
-        HttpURLConnection urlConnection = null;
-        try {
-            url = new URL("https://park-platform-dot-parziale-lcsdep.nw.r.appspot.com/api/v1/users/allMarker");
-
-            urlConnection = (HttpURLConnection) url
-                    .openConnection();
-
-            InputStream in = urlConnection.getInputStream();
-
-            InputStreamReader isw = new InputStreamReader(in);
-
-            int data = isw.read();
-            while (data != -1) {
-                char current = (char) data;
-                data = isw.read();
-                System.out.print(current);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-        }
-
-
+        //riempire reservations con tutte le prenotazioni user=lasciante
+        //(((lasciante vede rispetto all entrante))
 
         Reservation reservation = new Reservation ("11:10","Giuseppe", "AT060EK", 3, "Audi", "Rosso");
         Reservation reservation_2 = new Reservation("18:30", "Maria", "LS328GE", 2, "Cinquecento", "Rosa");

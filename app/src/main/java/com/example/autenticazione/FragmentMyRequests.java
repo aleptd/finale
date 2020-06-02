@@ -27,6 +27,9 @@ public class FragmentMyRequests extends Fragment {
         ListView listMyRequests;
         listMyRequests= (ListView)rootView.findViewById(R.id.listMyRequests);
         Request[] requests = new Request[2];
+        //riempire requests con tutte le prenotazioni dove user=entrante
+        //
+
         Request request = new Request ("13:10","Sara",
                 "CA999PE", "Panda", "Verde",
                 2, true);
