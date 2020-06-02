@@ -63,9 +63,10 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     //per DB utente
+    //FirebaseDatabase database;
+   // DatabaseReference myRef;
     FirebaseDatabase database;
     DatabaseReference myRef;
-
 
 
     @Override
@@ -96,6 +97,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+    private void saveUser(String emailUtente,String nome){
+        Utente user = new Utente(emailUtente);
+        myRef.child("Utenti").push().setValue(user);
+    }
+
     public void initUI(){
         //ciao a tutti ok
          nome = (EditText) findViewById(R.id.et_nome);
@@ -104,11 +110,12 @@ public class RegisterActivity extends AppCompatActivity {
          confermaPassword = (EditText) findViewById(R.id.et_confermaPassword);
          aggiungiImmagine = (ImageView) findViewById(R.id.ivUploadImage);
 
+
 //inizializzazione database firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
 
-
+        getToken();
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -141,11 +148,10 @@ public class RegisterActivity extends AppCompatActivity {
         String encodedImage = Base64.encodeToString(imageInByte, Base64.NO_WRAP); */
 
 //modo per salvare i dati nel DB
+        saveUser(emailUtente,"nome loggato");     /*  Utente utente = new Utente(emailUtente);
+        myRef.child("Utenti").push().setValue(utente);  */
 
-        Utente utente = new Utente(emailUtente);
-        myRef.child("Utenti").push().setValue(utente);
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
 
@@ -341,6 +347,32 @@ public class RegisterActivity extends AppCompatActivity {
         matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
+    // questo metodo ci permette di ottenere il token dell'utente
+    public void getToken(){
+        // si cerca di ottenere l'istanza dell'oggetto Firebase che si sta utilizzando
+        //in questo modo ci facciamo restituire l'id relativo all'istanza di Firebase che si sta utilizzando
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                // controlliamo se abbiamo errori nell'esecuzione del task
+                if (task.isSuccessful()){
+                    // tra tutti id ati contenuti nel task chiediamo il token
+                    String token = task.getResult().getToken();
+                    Log.d("token", token);
+
+                    saveUser(token, token);
+// per salvare il token dell'utente sul dispositivo
+                    //      myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid().setValue(token));
+
+                } else {
+                    //segnaliamo che dà errore e ci facciamo restituire l'eccezione del task
+                    Log.d("error","errore", task.getException());
+                    return;
+                }
+            }
+        });
+    }
+
 
 
 }

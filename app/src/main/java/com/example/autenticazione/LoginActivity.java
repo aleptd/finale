@@ -45,8 +45,10 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1;
     private FirebaseAuth mAuth;
 
+    private EditText name;
     private EditText username;
     private EditText password;
+    private EditText idToken;
 
     BreakIterator tvMessaggio;
 
@@ -119,6 +121,8 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        name = (EditText) findViewById(R.id.et_email);
+
         username = (EditText) findViewById(R.id.et_email);
         password = (EditText) findViewById(R.id.et_password);
         button = findViewById(R.id.sign_in_button);
@@ -144,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        getToken();
+
 
     }
     //Salvataggio preferenze
@@ -190,14 +194,20 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
+                Log.i("TAG", "firebaseAuthWithGoogle:" + account.getEmail() + account.getDisplayName());
                 firebaseAuthWithGoogle(account.getIdToken());
+                saveUser(account.getEmail(),account.getDisplayName());
+                Log.d(TAG, "tokengoogle");
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
                 // ...
             }
         }
+    }
+    private void saveUser(String emailUtente,String nome){
+        Utente user = new Utente(emailUtente);
+        myRef.child("Utenti").push().setValue(user);
     }
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
@@ -234,8 +244,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
+
         final String emailUtente = username.getText().toString();
         String passwordUtente = password.getText().toString();
+        //String nomeUtente = ;
+
 
 
                 mAuth.signInWithEmailAndPassword(emailUtente, passwordUtente)
@@ -249,19 +263,16 @@ public class LoginActivity extends AppCompatActivity {
                                     updateUI(user);
 
 
-/*
-                                    //se tutto va bene si salva nel DB
-                                    myRef = database.getReference("utente");
-                                    myRef.setValue(emailUtente);   */
+                                   //se tutto va bene si salva nel DB
+                               /*     myRef = database.getReference("utente");
+                                    myRef.setValue(emailUtente);  */
 
                                     //modo per salvare i dati nel DB
 
 
-                                    Utente utente = new Utente(emailUtente);
-            myRef.child("Utenti").push().setValue(utente);
 
 //modo per salvere i dati su DB 3
-                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    //FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
                                 } else {
@@ -274,13 +285,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         });
-
-           /*     //modo semplice di salvare l'utente nel DB
-        myRef = database.getReference("utente");
-        myRef.setValue(emailUtente);
-
-        Log.d("utente", emailUtente); */
-
 
 
             }
@@ -308,30 +312,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     } */
 
-    // questo metodo ci permette di ottenere il token dell'utente
-    public void getToken(){
-        // si cerca di ottenere l'istanza dell'oggetto Firebase che si sta utilizzando
-        //in questo modo ci facciamo restituire l'id relativo all'istanza di Firebase che si sta utilizzando
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-            @Override
-            public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                // controlliamo se abbiamo errori nell'esecuzione del task
-                if (task.isSuccessful()){
-                    // tra tutti id ati contenuti nel task chiediamo il token
-                    String token = task.getResult().getToken();
-                    Log.d("token", token);
-
-// per salvare il token dell'utente sul dispositivo
-                    //      myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid().setValue(token));
-
-                } else {
-                    //segnaliamo che dà errore e ci facciamo restituire l'eccezione del task
-                    Log.d("error","errore", task.getException());
-                    return;
-                }
-            }
-        });
-    }
 
 }
 
