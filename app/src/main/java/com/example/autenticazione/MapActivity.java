@@ -264,7 +264,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     public void displayUserPosition(LatLng posizioneUtente){
-        gmap.clear();
+        //gmap.clear();
         gmap.addMarker(new MarkerOptions().position(posizioneUtente));
         gmap.moveCamera(CameraUpdateFactory.newLatLng(posizioneUtente));
     }
