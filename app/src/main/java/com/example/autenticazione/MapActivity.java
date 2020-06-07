@@ -26,6 +26,13 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -114,10 +121,57 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onLowMemory();
         mapView.onLowMemory();
     }
-
+    Marker[] markers= new Marker[1000];
     @Override
     //la nostra applicazione resta in attesa finchè non arriva una mappa
     public void onMapReady(GoogleMap googleMap) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        DatabaseReference myRef = database.getReference().child("markerList");
+        myRef.addValueEventListener(
+                new ValueEventListener() {
+
+
+
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        //Get map of users in datasnapshot
+
+                        int i = 0;
+                        //iterate through each user, ignoring their UID
+                        for (Map.Entry<String, Object> entry :   ((Map<String, Object>) dataSnapshot.getValue()).entrySet()){
+                            //if(type == "Utenti"){
+                            //Get user map
+                            //Get phone field and append to list
+                            if(i!=0){
+                                Map keyValueFinalObj = (Map) entry.getValue();
+
+                                String category = (String)keyValueFinalObj.get("category");
+                                String description = (String)keyValueFinalObj.get("description");
+                                String id_marker = (String)keyValueFinalObj.get("id_marker");
+                                long lat = (long) keyValueFinalObj.get("lat");
+                                long longi = (long)keyValueFinalObj.get("longi");
+                                String name = (String)keyValueFinalObj.get("name");
+
+                                markers[i-1]= new Marker(id_marker,lat,longi,true,description,name);
+          /* }else {
+                Map keyValueFinalObj = (Map) entry.getValue();
+                type = (String) entry.getKey();
+            }*/
+
+                            }
+                            i++;
+
+                         }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        //handle databaseError
+                    }
+                });
         gmap = googleMap;
 
         //per visualizzare il traffico nella mappa
@@ -151,11 +205,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         // 45 4 7 sono grosso modo le coordinate di Torino
         LatLng city = new LatLng(45.071305, 7.685112);
 
+
         //si aggiunge un marker in versione semplificata
         gmap.addMarker(new MarkerOptions().position(city)
         .title("sei qui")
         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
+        for(int k= 0; k< markers.length; k++){
+            //si aggiunge un marker in versione semplificata
+            gmap.addMarker(new MarkerOptions().position(new LatLng(markers[k].getLongi(), markers[k].getLat()))
+                    .title("sei qui")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
+
+
+        }
 
 
         // si muove la camera su il punto LatLng definito
