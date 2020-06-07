@@ -1,9 +1,20 @@
 package com.example.autenticazione;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -22,6 +33,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private MapView mapView;
     GoogleMap gmap;
 
+
+    LocationManager locationManager;
+    LocationListener locationListener;
+
+
+    LatLng posizioneUtente;
+
+
+
     private ImageButton ibBack;
 
     @Override
@@ -32,6 +52,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         initUI();
 
         createMapView(savedInstanceState);
+
+        getLocation();
+
+        verifyPermissions();
+
 
     }
 
@@ -142,4 +167,108 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(city, 15));
 
     }
+
+ /*
+    LOCATION
+     */
+
+    public void getLocation(){
+        // creo un nuovo Location Manager
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        // creo un nuovo Location Listener
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                // la posizione dell'utente è cambiata
+                // Log.i("mylog", location.toString());
+
+                // in alternativa, posso fare il log così
+                Log.i("mylog", location.getLatitude() + ", " + location.getLongitude());
+
+
+
+                posizioneUtente = new LatLng(location.getLatitude(), location.getLongitude());
+                displayUserPosition(posizioneUtente);
+
+                // vecchio, utilizzato solo per costruire la soluzione
+
+                //LatLng destinazione = new LatLng(45.061892, 7.661223);
+                //calcolaPercorso(destinazione);
+/*
+                if (polylinePoints != null && polylinePoints.size() >0){
+                    polylinePoints.remove(0);
+                    polylinePoints.add(0, posizioneUtente);
+                    drawPolylines();
+                }
+
+                reverseGeocoding(posizioneUtente);
+                */
+
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+
+
+    }
+
+    //metodo che si occupa di gestire i permessi
+    public void verifyPermissions() {
+        // controllo se i permessi del Manifest sono di tipo ACCESS_FINE_LOCATION
+        // e se non ce li fornisce
+
+        if (Build.VERSION.SDK_INT >= 23){
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // se l'utente non ha fornito i permessi, glieli chiedo
+                //il requestcode comunica quale richiesta è stata effettuata
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }else
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 10, locationListener);
+        }else
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 10, locationListener);
+
+    }
+
+    //per capire cosa fare quando l'utente richiede i permessi
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // effettua operazioni quando l'utente fornisce i permessi
+
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // l'utente ha concesso i permessi
+
+
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 10, locationListener);
+                //qui viene richiesta la posizione dell'utente solo nel momento in cui concede i permessi
+            }
+        }
+    }
+
+    public void displayUserPosition(LatLng posizioneUtente){
+        gmap.clear();
+        gmap.addMarker(new MarkerOptions().position(posizioneUtente));
+        gmap.moveCamera(CameraUpdateFactory.newLatLng(posizioneUtente));
+    }
+
+
+
 }

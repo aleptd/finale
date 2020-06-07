@@ -196,7 +196,7 @@ public class LoginActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.i("TAG", "firebaseAuthWithGoogle:" + account.getEmail() + account.getDisplayName());
                 firebaseAuthWithGoogle(account.getIdToken());
-                saveUser(account.getEmail(),account.getDisplayName());
+                saveUserGettingToken(account.getEmail(),account.getDisplayName());
                 Log.d(TAG, "tokengoogle");
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
@@ -205,10 +205,153 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-    private void saveUser(String emailUtente,String nome){
-        Utente user = new Utente(emailUtente);
-        myRef.child("Utenti").push().setValue(user);
+
+    String emailGlobal;
+
+
+
+
+
+
+
+
+    String nomeGlobal;
+
+    private void saveUserGettingToken(String emailUtente,String nome){
+
+
+
+
+
+
+
+
+        emailGlobal =emailUtente;
+
+
+
+
+        nomeGlobal=nome;
+
+
+
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+
+
+
+
+            @Override
+
+
+
+
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+
+
+
+
+                // controlliamo se abbiamo errori nell'esecuzione del task
+
+
+
+
+                if (task.isSuccessful()){
+
+
+
+
+                    // tra tutti id ati contenuti nel task chiediamo il token
+
+
+
+
+                    String token = task.getResult().getToken();
+
+
+
+
+                    Log.d("token", token);
+
+
+
+
+                    Utente user = new Utente(emailGlobal,nomeGlobal,token);
+
+
+
+
+                    myRef.child("Utenti").push().setValue(user);
+
+
+
+
+// per salvare il token dell'utente sul dispositivo
+
+
+
+
+                    //      myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid().setValue(token));
+
+
+
+
+
+
+
+
+
+
+                } else {
+
+
+
+
+                    //segnaliamo che dà errore e ci facciamo restituire l'eccezione del task
+
+
+
+
+                    Log.d("error","errore", task.getException());
+
+
+
+
+                    return;
+
+
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+            }
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
     }
+
+
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
