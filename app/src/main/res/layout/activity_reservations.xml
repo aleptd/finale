@@ -16,8 +16,8 @@
     <include
         android:id="@+id/home_bar"
         layout="@layout/home_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="407dp"
+        android:layout_height="70dp"
         android:backgroundTint="#319BEF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,8 +27,8 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-        android:layout_width="378dp"
-        android:layout_height="33dp"
+        android:layout_width="393dp"
+        android:layout_height="41dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,22 +81,21 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/home_bar"
         app:layout_constraintEnd_toEndOf="@+id/home_bar"
-        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="@+id/home_bar"
         app:layout_constraintTop_toTopOf="@+id/home_bar"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="0.375" />
 
     <ImageButton
         android:id="@+id/ibBack"
         android:layout_width="34dp"
         android:layout_height="39dp"
         android:onClick="goBackToMainActivity"
-        app:layout_constraintBottom_toBottomOf="@+id/home_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/home_bar"
-        app:layout_constraintHorizontal_bias="0.901"
-        app:layout_constraintStart_toEndOf="@+id/tReservationsActivity"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="@+id/home_bar"
+        app:layout_constraintTop_toTopOf="@+id/tReservationsActivity"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/back" />
 
     <Button

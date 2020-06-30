@@ -117,6 +117,11 @@ public class LoginActivity extends AppCompatActivity {
         loginLayout.setBackgroundColor(getResources().getColor(R.color.colorBackground));
     }
 
+    public void loginPartner(View v) {
+        Intent intent = new Intent(this, MainActivityPartner.class);
+        startActivity(intent);
+    }
+
     private void initUI() {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -311,6 +316,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     } */
+
 
 
 }

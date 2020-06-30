@@ -9,6 +9,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="412dp"
         android:layout_height="287dp"
         android:orientation="vertical"
@@ -29,9 +30,7 @@
         android:id="@+id/home_bar"
         layout="@layout/home_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="-4dp"></include>
+        android:layout_height="wrap_content"></include>
 
     <ImageButton
         android:id="@+id/ibCancelNotification"
