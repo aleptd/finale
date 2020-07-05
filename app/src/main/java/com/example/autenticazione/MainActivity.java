@@ -103,6 +103,11 @@ public class MainActivity<ImageView> extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void manageMyCoupons(View v) {
+        Intent intent = new Intent(this, MyCouponActivity.class);
+        startActivity(intent);
+    }
+
 
     public void getNotifyActivity(View view) {
         Intent intent = new Intent(this, NotifyActivity.class);

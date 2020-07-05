@@ -4,10 +4,14 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.google.android.gms.common.api.Response;
@@ -30,6 +34,9 @@ import java.util.List;
  */
 public class FragmentRequestsToMe extends Fragment {
 
+    private static final int MENU_ITEM_ACCEPT_REQUEST=7;
+    private static final int MENU_ITEM_REJECT_REQUEST=8;
+
 
     public FragmentRequestsToMe() {
         // Required empty public constructor
@@ -43,6 +50,7 @@ public class FragmentRequestsToMe extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_requests_to_me2, container, false);
         ListView listRequestsToMe;
+        Button bAcceptRequest = (Button)rootView.findViewById(R.id.bAcceptRequest);
         listRequestsToMe= (ListView)rootView.findViewById(R.id.listRequestsToMe);
         Reservation[] reservations = new Reservation[2];
         //collegamento a web server

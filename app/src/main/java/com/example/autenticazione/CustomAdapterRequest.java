@@ -37,7 +37,7 @@ public class CustomAdapterRequest extends ArrayAdapter<Request> {
         if(r != null) {
             TextView t0 = (TextView) v.findViewById(R.id.tvTimeIncumbent);
             TextView t1 = (TextView) v.findViewById(R.id.tvUsernameIncumbent);
-            RatingBar ratingBar2 = v.findViewById(R.id.ratingBar2);
+            RatingBar ratingBar2 = v.findViewById(R.id.ratingBarRequest);
             ratingBar2.setNumStars(3);
             TextView t2 = (TextView) v.findViewById(R.id.tvLicensePlateIncumbent);
             TextView t3 = (TextView) v.findViewById(R.id.tvModelIncumbent);

@@ -17,7 +17,7 @@
         android:id="@+id/home_bar"
         layout="@layout/home_bar"
         android:layout_width="407dp"
-        android:layout_height="70dp"
+        android:layout_height="75dp"
         android:backgroundTint="#319BEF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

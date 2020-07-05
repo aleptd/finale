@@ -180,7 +180,7 @@ public class RegisterActivity extends AppCompatActivity {
         else if (!emailValida(emailUtente))
             Toast.makeText(this, "Inserire una e-mail corretta", Toast.LENGTH_SHORT).show();
         else if (!passwordValida(passwordUtente, confermaPasswordUtente))
-            Toast.makeText(this, "Occhio alle password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Occhio alle password: inserirne una di almeno 6 caratteri", Toast.LENGTH_SHORT).show();
         else
             createFirebaseUser(emailUtente,passwordUtente,nomeUtente);
 
@@ -252,7 +252,7 @@ public class RegisterActivity extends AppCompatActivity {
     //controllo sui campi inseriti per registrarsi
 
     private boolean nomeValido(String nome){
-        if (nome.length()>3)
+        if (nome.length()>2)
             return true;
         else
             return false;

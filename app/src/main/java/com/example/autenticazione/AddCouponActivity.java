@@ -5,6 +5,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +61,25 @@ public class AddCouponActivity extends AppCompatActivity {
         buonoArrayList = new ArrayList<Buono>();
         customAdapterCouponPartner = new CustomAdapterCouponPartner(this, R.layout.row_layout_coupon_partner, buonoArrayList);
         couponList.setAdapter(customAdapterCouponPartner);
+        registerForContextMenu(couponList);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu contextMenu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(contextMenu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_coupon_partner, contextMenu);
+        contextMenu.setHeaderTitle("Seleziona azione:");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        if(item.getItemId() == R.id.deleteActionPartner){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     //funzione per creare nuovo elemento ed inserirlo

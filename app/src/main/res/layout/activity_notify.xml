@@ -30,7 +30,7 @@
         android:id="@+id/home_bar"
         layout="@layout/home_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></include>
+        android:layout_height="75dp"></include>
 
     <ImageButton
         android:id="@+id/ibCancelNotification"
@@ -39,10 +39,10 @@
         android:onClick="cancelNotification"
         app:layout_constraintBottom_toBottomOf="@+id/home_bar"
         app:layout_constraintEnd_toEndOf="@+id/home_bar"
-        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.516"
+        app:layout_constraintVertical_bias="0.521"
         app:srcCompat="@drawable/back" />
 
     <TextView

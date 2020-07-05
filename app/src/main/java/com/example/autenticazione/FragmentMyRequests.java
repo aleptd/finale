@@ -2,11 +2,16 @@ package com.example.autenticazione;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 
@@ -14,6 +19,9 @@ import android.widget.ListView;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentMyRequests extends Fragment {
+    private ListView listMyRequests;
+
+    private static final int MENU_ITEM_DELETE_REQUEST=4;
 
     public FragmentMyRequests() {
         // Required empty public constructor
@@ -25,6 +33,7 @@ public class FragmentMyRequests extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_my_requests2, container, false);
         ListView listMyRequests;
+        Button bCancelRequest=(Button)rootView.findViewById(R.id.bCancelRequest);
         listMyRequests= (ListView)rootView.findViewById(R.id.listMyRequests);
         Request[] requests = new Request[2];
         //riempire requests con tutte le prenotazioni dove user=entrante
@@ -41,4 +50,5 @@ public class FragmentMyRequests extends Fragment {
         listMyRequests.setAdapter(customAdapter);
         return rootView;
     }
+
 }

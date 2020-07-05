@@ -22,6 +22,7 @@
     <string name="create_option">Nuovo</string>
     <string name="update_option">Modifica</string>
     <string name="tEditAuto">Inserisci dati</string>
+    <string name="tMyCouponLayout">I tuoi coupon:</string>
     <string name="delete_option">Elimina</string>
     <string name="tvNotification">Gestisci notifiche</string>
     <string name="tvPermission">Gestisci permessi</string>

@@ -79,7 +79,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorActionBarPartner"
-        android:text="Login"
+        android:onClick="registraPartner"
+        android:text="Registrati"
         android:textColor="@color/colorBackgroundPartner"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -100,5 +101,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/partner_bar"
         app:layout_constraintTop_toTopOf="@+id/partner_bar" />
+
+    <TextView
+        android:id="@+id/tvLoginPartner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="logInPartner"
+        android:text="Già registrato? Login qui"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.908" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

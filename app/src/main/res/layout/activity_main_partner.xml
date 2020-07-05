@@ -12,7 +12,7 @@
         style="@style/MyTheme.ActionBar.TitleTextStyle"
         layout="@layout/partner_bar"
         android:layout_width="412dp"
-        android:layout_height="82dp"
+        android:layout_height="75dp"
         app:subtitleTextColor="@color/colorBackgroundPartner"
         app:titleTextColor="@color/colorBackgroundPartner"></include>
 
@@ -32,28 +32,29 @@
 
     <ImageView
         android:id="@+id/ivSettingsPartner"
-        android:layout_width="47dp"
-        android:layout_height="48dp"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/partner_bar"
-        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintHorizontal_bias="0.808"
         app:layout_constraintStart_toStartOf="@+id/partner_bar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.027"
+        app:layout_constraintVertical_bias="0.021"
         app:srcCompat="@drawable/settings_partner" />
 
     <ImageView
         android:id="@+id/ivLogoutPartner"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
         android:clickable="true"
+        android:onClick="logOut"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/partner_bar"
         app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="@+id/partner_bar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026"
+        app:layout_constraintVertical_bias="0.02"
         app:srcCompat="@drawable/logout_partner" />
 
     <TextView
