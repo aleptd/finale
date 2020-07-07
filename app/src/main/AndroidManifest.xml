@@ -19,6 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
+        <activity android:name=".MyCouponActivity" />
+        <activity android:name=".ManageCouponActivity" />
+        <activity android:name=".AddCouponActivity" />
+        <activity android:name=".RegisterActivityPartner" />
+        <activity android:name=".MainActivityPartner" />
 
         <meta-data
             android:name="com.google.android.gms.version"

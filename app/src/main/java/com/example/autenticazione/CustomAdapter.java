@@ -43,8 +43,8 @@ public class CustomAdapter extends ArrayAdapter<Reservation> {
             TextView t2 = (TextView) v.findViewById(R.id.tvLicensePlateEntrant);
             TextView t3 = (TextView) v.findViewById(R.id.tvModelEntrant);
             TextView t4 = (TextView) v.findViewById(R.id.tvColorEntrant);
-            RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingEntrant);
-            ratingBar.setNumStars(3);
+            RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBarReq2Me);
+            ratingBar.setNumStars(4);
             if(t0 != null) {
                 t0.setText(p.getTimeMeeting());
             }

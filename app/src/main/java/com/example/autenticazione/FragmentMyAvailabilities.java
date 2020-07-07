@@ -9,7 +9,11 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -22,6 +26,9 @@ import static com.example.autenticazione.NotificationChannels2.CHANNEL_2_ID;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentMyAvailabilities extends Fragment {
+    private static final int MENU_ITEM_EDIT_AVAILABILITY=2;
+    private static final int MENU_ITEM_DELETE_AVAILABILITY=1;
+
 
     int idNotifica=0;
 
@@ -46,6 +53,7 @@ public class FragmentMyAvailabilities extends Fragment {
         availabilities[1]= availability1;
         CustomAdapterAvailability customAdapter = new CustomAdapterAvailability(getActivity(), R.layout.row_layout_availabilities, availabilities);
         listMyAvailabilites.setAdapter(customAdapter);
+        registerForContextMenu(listMyAvailabilites);
         return rootView;
 
 
@@ -106,6 +114,28 @@ public class FragmentMyAvailabilities extends Fragment {
 
 
         }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(Menu.NONE, MENU_ITEM_DELETE_AVAILABILITY, Menu.NONE, "Elimina");
+        menu.add(Menu.NONE, MENU_ITEM_EDIT_AVAILABILITY, Menu.NONE, "Modifica");
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_ITEM_DELETE_AVAILABILITY:
+                return true;
+            case MENU_ITEM_EDIT_AVAILABILITY:
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    }
+
 
 
 

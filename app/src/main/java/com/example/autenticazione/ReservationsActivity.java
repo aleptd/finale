@@ -62,6 +62,7 @@ public class ReservationsActivity extends AppCompatActivity {
         reservationsLayout.setBackgroundColor(getResources().getColor(R.color.colorBackground));
         ibBack = (ImageButton)findViewById(R.id.ibBack);
 
+
         //tabLayout
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);

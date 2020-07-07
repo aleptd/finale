@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayoutPartner"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivityPartner">
+
+    <include
+        android:id="@+id/partner_bar"
+        style="@style/MyTheme.ActionBar.TitleTextStyle"
+        layout="@layout/partner_bar"
+        android:layout_width="412dp"
+        android:layout_height="75dp"
+        app:subtitleTextColor="@color/colorBackgroundPartner"
+        app:titleTextColor="@color/colorBackgroundPartner"></include>
+
+    <ImageView
+        android:id="@+id/ivAddCoupon"
+        android:layout_width="404dp"
+        android:layout_height="138dp"
+        android:clickable="true"
+        android:onClick="addNewCoupon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.162"
+        app:srcCompat="@drawable/aggiungere" />
+
+    <ImageView
+        android:id="@+id/ivSettingsPartner"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/partner_bar"
+        app:layout_constraintHorizontal_bias="0.808"
+        app:layout_constraintStart_toStartOf="@+id/partner_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021"
+        app:srcCompat="@drawable/settings_partner" />
+
+    <ImageView
+        android:id="@+id/ivLogoutPartner"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:clickable="true"
+        android:onClick="logOut"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/partner_bar"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="@+id/partner_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02"
+        app:srcCompat="@drawable/logout_partner" />
+
+    <TextView
+        android:id="@+id/tMainActivityPartner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Benvenuto"
+        android:textColor="@color/colorBackgroundPartner"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/partner_bar"
+        app:layout_constraintEnd_toEndOf="@+id/partner_bar"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="@+id/partner_bar"
+        app:layout_constraintTop_toTopOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.444" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

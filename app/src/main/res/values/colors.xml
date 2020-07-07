@@ -5,4 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorActionBar">#1E4382</color>
     <color name="colorBackground">#9CC6ED</color>
+    <color name="colorBackgroundPartner">#F1C5C2</color>
+    <color name="colorActionBarPartner">#8C3A34</color>
+    <color name="colorWelcome">#FFFFFB</color>
 </resources>

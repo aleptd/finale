@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -89,19 +90,36 @@ public class LoginActivity extends AppCompatActivity {
 
             Uri photoUrl = currentUser.getPhotoUrl();
 
+            if(name.length()==11) {
 
-            // Check if user's email is verified
-            boolean emailVerified = currentUser.isEmailVerified();
-            Log.i(TAG, "email verificata" + emailVerified);
+                // Check if user's email is verified
+                boolean emailVerified = currentUser.isEmailVerified();
+                Log.i(TAG, "email verificata" + emailVerified);
 
-            // The user's ID, unique to the Firebase project.
-            //FirebaseUser.getIdToken();
-            String uid = currentUser.getUid();
-            Log.i(TAG, "uid" + uid);
-            Log.i(TAG, "connesso");
+                // The user's ID, unique to the Firebase project.
+                //FirebaseUser.getIdToken();
+                String uid = currentUser.getUid();
+                Log.i(TAG, "uid" + uid);
+                Log.i(TAG, "connesso");
 
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(this, MainActivityPartner.class);
+                startActivity(intent);
+            }
+            else{
+                // Check if user's email is verified
+                boolean emailVerified = currentUser.isEmailVerified();
+                Log.i(TAG, "email verificata" + emailVerified);
+
+                // The user's ID, unique to the Firebase project.
+                //FirebaseUser.getIdToken();
+                String uid = currentUser.getUid();
+                Log.i(TAG, "uid" + uid);
+                Log.i(TAG, "connesso");
+
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+
+            }
 
         }
     }
@@ -117,10 +135,15 @@ public class LoginActivity extends AppCompatActivity {
         loginLayout.setBackgroundColor(getResources().getColor(R.color.colorBackground));
     }
 
+    public void iAmPartner(View v) {
+        Intent intent = new Intent(this, RegisterActivityPartner.class);
+        startActivity(intent);
+    }
+
+
     private void initUI() {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
         name = (EditText) findViewById(R.id.et_email);
 
         username = (EditText) findViewById(R.id.et_email);
@@ -144,11 +167,6 @@ public class LoginActivity extends AppCompatActivity {
         //inizializzazione database firebase
          FirebaseDatabase database = FirebaseDatabase.getInstance();
          myRef = database.getReference();
-
-
-
-
-
 
     }
     //Salvataggio preferenze
@@ -454,6 +472,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     } */
+
 
 
 }

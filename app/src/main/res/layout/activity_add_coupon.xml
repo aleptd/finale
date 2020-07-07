@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addCouponLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCouponActivity">
+
+    <Button
+        android:id="@+id/bConfirm"
+        android:layout_width="132dp"
+        android:layout_height="47dp"
+        android:backgroundTint="@color/colorActionBarPartner"
+        android:onClick="addNewCoupon"
+        android:text="Conferma"
+        android:textColor="@color/colorBackgroundPartner"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.298" />
+
+    <include
+        android:id="@+id/partner_bar"
+        style="@style/MyTheme.ActionBar.TitleTextStyle"
+        layout="@layout/partner_bar"
+        android:layout_width="409dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ivNotify"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:subtitleTextColor="@color/colorBackgroundPartner"
+        app:titleTextColor="@color/colorBackgroundPartner"></include>
+
+    <EditText
+        android:id="@+id/etDiscount"
+        android:layout_width="79dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="Sconto"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.268"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.042" />
+
+    <EditText
+        android:id="@+id/etExpiringDate"
+        android:layout_width="175dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Data di scadenza"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.041" />
+
+    <TextView
+        android:id="@+id/tAddCoupon"
+        android:layout_width="247dp"
+        android:layout_height="40dp"
+        android:text="Aggiungi coupon"
+        android:textColor="@color/colorBackgroundPartner"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/partner_bar"
+        app:layout_constraintEnd_toEndOf="@+id/partner_bar"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bCodeGenerator"
+        android:layout_width="93dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/colorActionBarPartner"
+        android:text="Genera codice"
+        android:textColor="@color/colorBackgroundPartner"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.279"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.163" />
+
+    <TextView
+        android:id="@+id/tvRandomCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.659"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.174" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="404dp"
+        android:layout_height="318dp"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bConfirm"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ListView
+            android:id="@+id/couponList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivBackPartner"
+        android:layout_width="38dp"
+        android:layout_height="46dp"
+        android:clickable="true"
+        android:onClick="getBack"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.013"
+        app:srcCompat="@drawable/backpartner" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

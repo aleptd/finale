@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registerPartnerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivityPartner">
+
+    <include
+        android:id="@+id/partner_bar"
+        style="@style/MyTheme.ActionBar.TitleTextStyle"
+        layout="@layout/partner_bar"
+        android:layout_width="410dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ivNotify"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:subtitleTextColor="@color/colorBackgroundPartner"
+        app:titleTextColor="@color/colorBackgroundPartner"></include>
+
+    <EditText
+        android:id="@+id/etPIva"
+        android:layout_width="217dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:hint="P.Iva"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.18" />
+
+    <EditText
+        android:id="@+id/etConfermaPassword"
+        android:layout_width="217dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:hint="Conferma Password"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.617" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="217dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.476" />
+
+    <EditText
+        android:id="@+id/etEmailPartner"
+        android:layout_width="217dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.323" />
+
+    <Button
+        android:id="@+id/bLoginPartner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorActionBarPartner"
+        android:onClick="registraPartner"
+        android:text="Registrati"
+        android:textColor="@color/colorBackgroundPartner"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.802" />
+
+    <TextView
+        android:id="@+id/tvRegisterPartnerActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registra la tua attività"
+        android:textColor="@color/colorBackgroundPartner"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/partner_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/partner_bar"
+        app:layout_constraintTop_toTopOf="@+id/partner_bar" />
+
+    <TextView
+        android:id="@+id/tvLoginPartner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="logInPartner"
+        android:text="Già registrato? Login qui"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/partner_bar"
+        app:layout_constraintVertical_bias="0.908" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

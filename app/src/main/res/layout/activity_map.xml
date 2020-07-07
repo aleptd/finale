@@ -9,10 +9,10 @@
     <include
         android:id="@+id/home_bar"
         layout="@layout/home_bar"
-        android:layout_width="415dp"
-        android:layout_height="46dp"
+        android:layout_width="414dp"
+        android:layout_height="75dp"
         tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="-4dp"></include>
+        tools:layout_editor_absoluteY="1dp"></include>
 
     <TextView
         android:id="@+id/tMapActivity"
@@ -28,15 +28,15 @@
 
     <ImageButton
         android:id="@+id/ibBack"
-        android:layout_width="32dp"
-        android:layout_height="39dp"
+        android:layout_width="37dp"
+        android:layout_height="42dp"
         android:onClick="goBackToMainActivity"
         app:layout_constraintBottom_toBottomOf="@+id/home_bar"
         app:layout_constraintEnd_toEndOf="@+id/home_bar"
-        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="@+id/home_bar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.351"
+        app:layout_constraintVertical_bias="0.36"
         app:srcCompat="@drawable/back" />
 
     <com.google.android.gms.maps.MapView
